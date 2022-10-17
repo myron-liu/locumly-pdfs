@@ -8,10 +8,8 @@ const PDFViewer = ({ title, documentUrl }) => {
 };
 
 const PDFApp = () => {
-  const params = new Proxy(new URLSearchParams(window.location.search), {
-    get: (searchParams, prop) => searchParams.get(prop)
-  });
-  const documentUrl = `${params.document}.pdf`;
+  const params = new URLSearchParams(window.location.search);
+  const documentUrl = `/${params.get('document')}.pdf`;
   return <PDFViewer title={params.document} documentUrl={documentUrl} />;
 }
 
